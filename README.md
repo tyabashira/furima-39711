@@ -1,24 +1,65 @@
 # README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column      | Type       | Options                                     |
+| ------      | ---------- | ------------------------------              |
+| user_name   | references | null: false,unique: true, foreign_key: true |
+| mail        | string     | null: false |
+| password    |string      | null: false,unique: true |
+| first_name  | string     | null: false |
+| last_name   | string     | null: false |
+| birth       | string     | null: false |
+### association
+has_many :furimas
+has_many :items
+has_many :customars
 
-Things you may want to cover:
+## furimasテーブル
 
-* Ruby version
+| Column     | Type       | Options                        |
+| ------     | ---------- | ------------------------------ |
+| image      | image      | null: false |
+| main_text  | text       | null: false |
+| user       | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
+### association
+has_many :items
+belongs_to :user
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| image     | image      | null: false |
+| item_text | text       | null: false |
+| category  | string     | null: false |
+| quality   | string     | null: false |
+| cost      | integer    | null: false |
+| region    | string     | null: false |
+| post_day  | integer    | null: false |
+| user      | references | null: false, foreign_key: true |
+### association
+belongs_to :user
+belongs_to :furima
+belongs_to :customar
 
-* Database creation
+## custmarsテーブル
 
-* Database initialization
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
+| shopping  | references | null: false, foreign_key: true |
+### association
+has_one :shopping
+has_many :customar
+## shoppingsテーブル
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| post_code |integer     | null: false |
+| states    | string     | null: false |
+| city      | string     | null: false |
+| user      | references | null: false, foreign_key: true |
+### association
+belongs_to :customar
