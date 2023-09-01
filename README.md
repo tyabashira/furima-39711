@@ -23,7 +23,7 @@ has_many :items
 | user       | references | null: false, foreign_key: true |
 | item       | references | null: false, foreign_key: true |
 ### association
-has_many :items
+has_one :item
 belongs_to :user
 has_one :shpping
 
@@ -31,14 +31,14 @@ has_one :shpping
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
-| item      | string     | null: false |
-| image     | image      | null: false |
+| item_name | string     | null: false |
 | item_text | text       | null: false |
-| category  | string     | null: false |
-| quality   | string     | null: false |
-| cost      | integer    | null: false |
-| region    | string     | null: false |
-| post_day  | integer    | null: false |
+| category_id| string    | null: false |
+| quality_id| string     | null: false |
+| cost_id   | integer    | null: false |
+| region_id | integer    | null: false |
+| post_day_id| integer   | null: false |
+| price     | integer    | null: false |
 | user      | references | null: false, foreign_key: true |
 ### association
 belongs_to :user
@@ -49,7 +49,7 @@ belongs_to :furima
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
-| post_code |integer     | null: false |
+| post_code | string     | null: false |
 | states    | string     | null: false |
 | city      | string     | null: false |
 | street    | string     | null: false |
