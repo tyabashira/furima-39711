@@ -1,35 +1,37 @@
 # README
 ## usersテーブル
 
-| Column      | Type       | Options                                     |
-| ------      | ---------- | ------------------------------              |
-| user_name   | references | null: false,unique: true, foreign_key: true |
-| mail        | string     | null: false |
-| password    |string      | null: false,unique: true |
-| first_name  | string     | null: false |
-| last_name   | string     | null: false |
-| birth       | string     | null: false |
+| Column                | Type       | Options                                     |
+| ------                | ---------- | ------------------------------              |
+| user_name             | references | null: false,foreign_key: true |
+| email                 | string     | null: false,unique: true |
+| encrypted_password    |string      | null: false,unique: true |
+| first_name            | string     | null: false |
+| last_name             | string     | null: false |
+| first_kana            | string     | null: false |
+| last_kana             | string     | null: false |
+| birth                 | date       | null: false |
 ### association
 has_many :furimas
 has_many :items
-has_many :customars
+
 
 ## furimasテーブル
 
 | Column     | Type       | Options                        |
 | ------     | ---------- | ------------------------------ |
-| image      | image      | null: false |
-| main_text  | text       | null: false |
 | user       | references | null: false, foreign_key: true |
 | item       | references | null: false, foreign_key: true |
 ### association
 has_many :items
 belongs_to :user
+has_one :shpping
 
 ## itemsテーブル
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
+| item      | string     | null: false |
 | image     | image      | null: false |
 | item_text | text       | null: false |
 | category  | string     | null: false |
@@ -41,18 +43,8 @@ belongs_to :user
 ### association
 belongs_to :user
 belongs_to :furima
-belongs_to :customar
 
-## custmarsテーブル
 
-| Column    | Type       | Options                        |
-| ------    | ---------- | ------------------------------ |
-| user      | references | null: false, foreign_key: true |
-| item      | references | null: false, foreign_key: true |
-| shopping  | references | null: false, foreign_key: true |
-### association
-has_one :shopping
-has_many :customar
 ## shoppingsテーブル
 
 | Column    | Type       | Options                        |
@@ -60,6 +52,9 @@ has_many :customar
 | post_code |integer     | null: false |
 | states    | string     | null: false |
 | city      | string     | null: false |
+| street    | string     | null: false |
+| build     | string     |             |
+| phone     | integer    | null: false |
 | user      | references | null: false, foreign_key: true |
 ### association
-belongs_to :customar
+belongs_to :furima
