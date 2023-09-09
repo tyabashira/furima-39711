@@ -73,13 +73,13 @@ RSpec.describe User, type: :model do
      
     end
 
-    # it 'emailの一意制約違反の場合' do
-    #   @user = FactoryBot.create(:user)
-    #   another_user = FactoryBot.build(:user, email: user.email)  
-    #   another_user.valid?
-    #   expect(another_user.errors[:email]).to include("は既に存在します")
+    it 'emailの一意制約違反の場合' do
+      @user = FactoryBot.create(:user)
+     another_user = FactoryBot.build(:user, email: @user.email)  
+      another_user.valid?
+      expect(another_user.errors[:email]).to include("has already been taken")
      
-    # end
+    end
 
     it 'passwordが6文字以上であれば登録できる' do
       @user = FactoryBot.build(:user, password: "12345a", encrypted_password: "12345a")    
@@ -98,9 +98,10 @@ RSpec.describe User, type: :model do
     end
 
     it 'passwordとconfirmationが一致していないと登録できない' do
-      @user = FactoryBot.build(:user, password: "12345a", encrypted_password: "12345b") 
+      @user.password = '12345a'
+      @user.password_confirmation = '12345b'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+     expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
     it 'passwordが英字のみでは登録できない' do
