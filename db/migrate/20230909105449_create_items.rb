@@ -9,7 +9,6 @@
       t.integer :region_id ,   null: false,default:nil
       t.integer :post_day_id,  null: false,default:nil
       t.integer :price   ,     null: false,default:nil
-      #t.integer :status_id,    null: false,default:nil
       t.references :user,      null: false,default:nil,foreign_key: true
       t.timestamps
     end

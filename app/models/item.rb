@@ -12,7 +12,6 @@ class Item < ApplicationRecord
   validates :item_name, presence: true, length: { maximum:40, message:"40文字以下にしてください" }
   validates :item_text, presence: true, length: { maximum:1000, message:"1000文字以下にしてください" }
 
-  #validates :price, presence: true,numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999},format: {with: /\A[0-9]+\z/ }
   validates :price, numericality:{ greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "は ¥300~9,999,999 の間で半角数字で指定してください" }
 
   validates :category_id, numericality: { other_than: 1,  message: "can't be blank"} 

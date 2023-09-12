@@ -33,13 +33,12 @@ has_one :shpping
 | ------    | ---------- | ------------------------------ |
 | item_name | string     | null: false |
 | item_text | text       | null: false |
-| category_id| interger   | null: false |
+| category_id| integer   | null: false |
 | quality_id| integer    | null: false |
 | cost_id   | integer    | null: false |
 | region_id | integer    | null: false |
 | post_day_id| integer   | null: false |
 | price     | integer    | null: false |
-| states_id | integer    | null: false |
 | user      | references | null: false, foreign_key: true |
 ### association
 belongs_to :user
