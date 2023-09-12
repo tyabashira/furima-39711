@@ -34,44 +34,44 @@ RSpec.describe Item, type: :model do
 
     it 'category_idが空では登録できない' do
       
-      @item.category_id = ''
+      @item.category_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
 
     it ' quality_idが空では登録できない' do
       
-      @item.quality_id = ''
+      @item.quality_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Quality can't be blank")
     end
 
     it 'cost_id が空では登録できない' do
       
-      @item.cost_id = ''
+      @item.cost_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Cost can't be blank")
     end
 
     it ' region_idが空では登録できない' do
       
-      @item.region_id = ''
+      @item.region_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Region can't be blank")
     end
 
     it 'post_day_id が空では登録できない' do
   
-      @item.post_day_id = ''
+      @item.post_day_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Post day can't be blank")
     end
 
     it 'price が空では登録できない' do
       
-      @item.price = ''
+      @item.price = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number", "Price is invalid")
+      expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
     end
 
     it '41文字以上では登録できない' do
@@ -89,25 +89,55 @@ RSpec.describe Item, type: :model do
     it '販売価格が299以下では登録できない' do
       @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
     end
    
     it '販売価格が10,000,000以上では登録できない' do
       @item.price = 10000000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
     end
 
     it '販売価格が半角数字でない場合、登録できない' do
       @item.price = '１２３４５'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
     end
 
     it '販売価格が数字でないと登録できない' do
       @item.price = 'abcdef'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
+    end
+
+    it 'カテゴリーに「---」が選択されている場合は出品できない' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+    end
+
+    it '商品の状態に「---」が選択されている場合は出品できない' do
+      @item.quality_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Quality can't be blank")
+    end
+
+    it '配送料の負担に「---」が選択されている場合は出品できない' do
+      @item.cost_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Cost can't be blank")
+    end
+
+    it '発送元の地域に「---」が選択されている場合は出品できない' do
+      @item.region_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Region can't be blank")
+    end
+
+    it '発送までの日数に「---」が選択されている場合は出品できない' do
+      @item.post_day_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Post day can't be blank")
     end
   end
 end
