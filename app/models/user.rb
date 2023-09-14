@@ -2,7 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :items
+<<<<<<< HEAD
   # has_many :furimas
+=======
+>>>>>>> parent of 9b8dbe9 (詳細表示（購入機能を除く）)
   validates :user_name, presence: true
   validate :password_complexity
   def password_complexity

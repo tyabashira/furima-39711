@@ -6,7 +6,10 @@ class Item < ApplicationRecord
   belongs_to :quality
   belongs_to :region
   belongs_to :user
+<<<<<<< HEAD
   # belongs_to :furima
+=======
+>>>>>>> parent of 9b8dbe9 (詳細表示（購入機能を除く）)
   has_one_attached :image
  
   validates :image, presence: true
