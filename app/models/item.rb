@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :quality
   belongs_to :region
   belongs_to :user
+  belongs_to :furima
   has_one_attached :image
  
   validates :image, presence: true
