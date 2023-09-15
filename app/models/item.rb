@@ -6,10 +6,7 @@ class Item < ApplicationRecord
   belongs_to :quality
   belongs_to :region
   belongs_to :user
-<<<<<<< HEAD
-  # belongs_to :furima
-=======
->>>>>>> parent of 9b8dbe9 (詳細表示（購入機能を除く）)
+
   has_one_attached :image
  
   validates :image, presence: true
@@ -23,4 +20,6 @@ class Item < ApplicationRecord
   validates :post_day_id, numericality: { other_than: 1,  message: "can't be blank"} 
   validates :quality_id, numericality: { other_than: 1,  message: "can't be blank"} 
   validates :region_id, numericality: { other_than: 0,  message: "can't be blank"} 
+
+  
 end
