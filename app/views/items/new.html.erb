@@ -2,7 +2,6 @@
   <header class="items-sell-header">
   <%if @item.image.attached?%>
     <%= link_to image_tag(@item.image.variant(resize: '185x50')), "/" %>
-  <% else %>
   <%end%>
   </header>
   <div class="items-sell-main">
