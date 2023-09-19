@@ -55,6 +55,6 @@ has_one :furima
 | street    | string     | null: false |
 | build     | string     |             |
 | phone     | string     | null: false |
-| user      | references | null: false, foreign_key: true |
+| furima    | references | null: false, foreign_key: true |
 ### association
 belongs_to :furima
