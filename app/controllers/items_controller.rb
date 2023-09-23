@@ -23,7 +23,7 @@ def show
 end
 
 def edit
-   if @item.user != current_user
+   if @item.user != current_user || @item.furima.present?
     redirect_to root_path
     return
    end

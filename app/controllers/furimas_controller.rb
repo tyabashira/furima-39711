@@ -4,12 +4,10 @@ class FurimasController < ApplicationController
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
      @furima_shopping = FurimaShopping.new
      @item = Item.find(params[:item_id])
-      if current_user.id == @item.user_id 
+      if current_user.id == @item.user_id || @item.furima.present?
         redirect_to root_path
       end
-      if @item.furima.present?
-        redirect_to root_path
-      end
+      
    end
    
 
