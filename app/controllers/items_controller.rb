@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :item, only: [:edit, :update, :show, :destroy]
   def index
    @items = Item.all.order("created_at DESC")
+ 
   end
 
  def new
@@ -22,7 +23,7 @@ def show
 end
 
 def edit
-   if @item.user != current_user
+   if @item.user != current_user || @item.furima.present?
     redirect_to root_path
     return
    end
