@@ -67,4 +67,5 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.assets.debug = true #アセット直下のファイルをその都度、読み込む設定（変更を加えたときに正しく動作しない場合）
 end

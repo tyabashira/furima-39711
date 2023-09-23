@@ -8,7 +8,7 @@ FactoryBot.define do
     region_id       {2}
     post_day_id     {2}
     price           {1000}
-    association :user, factory: :user
+    association :user
 
     after(:build) do |item|
       item.image.attach(io: File.open('public/apple-touch-icon.png'), filename: 'apple-touch-icon.png')
