@@ -6,5 +6,6 @@ FactoryBot.define do
     city      {'東京都'}
     street    {'11'}
     phone     {'1111111111'}
+    build     {'11'}
   end
 end

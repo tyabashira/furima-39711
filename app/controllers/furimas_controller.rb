@@ -1,9 +1,9 @@
 class FurimasController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item,only: [:index, :create]
    def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
      @furima_shopping = FurimaShopping.new
-     @item = Item.find(params[:item_id])
       if current_user.id == @item.user_id || @item.furima.present?
         redirect_to root_path
       end
@@ -12,9 +12,8 @@ class FurimasController < ApplicationController
    
 
     def create
-    @item = Item.find(params[:item_id])
+   
       @furima_shopping = FurimaShopping.new(furima_shopping_params)
-
       if @furima_shopping.valid?
    
         pay_item
@@ -31,6 +30,10 @@ class FurimasController < ApplicationController
 
    def furima_shopping_params
      params.require(:furima_shopping).permit(:post_code, :region_id, :city, :street, :build, :phone, :price).merge(user_id: current_user.id, item_id: params[:item_id] , token: params[:token])
+   end
+
+   def set_item
+    @item = Item.find(params[:item_id])
    end
   
    def pay_item

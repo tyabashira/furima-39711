@@ -20,6 +20,10 @@ RSpec.describe FurimaShopping, type: :model do
       @furima_shopping.phone = 12345678901
       expect(@furima_shopping).to be_valid
     end
+    it "建物が空でも登録できること" do
+      @furima_shopping.build = nil
+      expect(@furima_shopping).to be_valid
+    end
   end
 
   context '内容に問題がある場合' do
