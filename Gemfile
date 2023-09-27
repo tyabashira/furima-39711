@@ -91,3 +91,4 @@ gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem 'gon'
  gem 'faker'
+gem "aws-sdk-s3", require: false
