@@ -19,7 +19,7 @@ test:
   database: furima-39711_test
 
 production:
-   <<: *default
+  <<: *default
   adapter: mysql2
   database: furima-39711_production
   username: root
